@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "menuSkill": ".agents/skills/video-workflow-menu/SKILL.md",
+  "skills": [
+    {
+      "id": 1,
+      "name": "多機訪談剪輯",
+      "slug": "video-production-pilot",
+      "summary": "雙機／多機訪談素材同步、對話剪輯、字幕與交接；原生 Multicam 依實際驗證狀態說明。",
+      "entry": ".agents/skills/video-production-pilot/SKILL.md",
+      "workflow": "docs/production/WORKFLOW.md"
+    },
+    {
+      "id": 2,
+      "name": "MV 情緒敘事剪輯",
+      "slug": "mv-emotional-editing",
+      "summary": "歌曲與情境素材分析、A／B／C敘事、hook／callback、音樂踩點及可恢復原聲交接。",
+      "entry": ".agents/skills/mv-emotional-editing/SKILL.md",
+      "workflow": "docs/production/MV_WORKFLOW.md"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-﻿{
-  "name": "tool-video-roughcut",
+{
+  "name": "kmw02-video-roughcut",
   "version": "0.1.0",
   "description": "AI Video Rough-Cut Assistant: A-roll speech-to-text & B-roll semantic matching to DaVinci Resolve XML",
   "type": "module",

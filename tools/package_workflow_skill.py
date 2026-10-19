@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 VERSION="0.3.1";SLUG="video-production-pilot";ROOTNAME=f"{SLUG}-v{VERSION}"
 SKILL=ROOT/".agents"/"skills"/SLUG/"SKILL.md"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
-REPO="https://github.com/DinoHappyKM/tool-video-roughcut/blob/codex/production-workflow-pilot/"
+REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
 WINDOWS=r'''param([string]$ProjectDirectory = $PSScriptRoot)
 $ErrorActionPreference = 'Stop'
 function Read-FileSha256([string]$FilePath) {
@@ -155,4 +155,3 @@ def build():
     (output/"SHA256SUMS.txt").write_text(f"{sha(zipped.read_bytes())}  {zipped.name}\n",encoding="utf-8")
     print(json.dumps({"zip":str(zipped),"version":VERSION,"files":len(files),"canonicalSources":len(manifest),"bytes":zipped.stat().st_size,"sha256":sha(zipped.read_bytes()),"deploymentRelativeLinks":"passed","extractedFileEquality":"passed"},ensure_ascii=False))
 if __name__=="__main__":build()
-

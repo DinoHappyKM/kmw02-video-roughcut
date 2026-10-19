@@ -5,6 +5,17 @@
 目的：用「自己的剪輯規範＋Codex／ChatCut Desktop＋必要時 DaVinci」處理單機、多機、一部或多部成片；以真實素材驗證後，再決定自建功能。
 完成標準：四張工作表可直接填寫，兩批試跑有可追溯紀錄，品質與工時分開驗收。文件完成不代表軟體、成片或教學環境已通過。
 
+## 影片技能主選單
+
+輸入 **0** 或 **主選單**，列出目前可用技能，再選編號或直接描述任務。
+
+| 編號 | 技能 | 用途 |
+|---|---|---|
+| 1 | [多機訪談剪輯](.agents/skills/video-production-pilot/SKILL.md) | 雙機／多機同步、對話剪輯、字幕與交接 |
+| 2 | [MV 情緒敘事剪輯](.agents/skills/mv-emotional-editing/SKILL.md) | 歌曲情緒、hook／callback、踩點轉場與可恢復原聲 |
+
+[主選單入口](.agents/skills/video-workflow-menu/SKILL.md) 讀取 [技能登錄表](docs/production/SKILLS.json)，並核對實際技能檔案。主選單不占剪輯技能編號；回到選單不改工程或取消任務。各技能既有確認流程仍適用。
+
 ## 現在開始
 
 1. 閱讀 [目前狀態](docs/production/STATUS.md)，確認工具與素材是否就緒。
@@ -44,3 +55,7 @@
 ## 開發範圍
 
 本次維護流程、表單、試跑紀錄與薄技能入口，保留既有程式。至少兩批素材出現同一缺口且現成方法無法解決，再評估投入輔助工具。[變更紀錄](docs/production/CHANGELOG.md)
+
+## 技能2：MV 情緒敘事剪輯
+
+MV 0.2.0：一個真實案例與 callback 修訂獲使用者確認，新踩點規則待測。技能1雙機訪談流程保留。MV 任務先讀 [技能2](.agents/skills/mv-emotional-editing/SKILL.md) 與 [MV 流程](docs/production/MV_WORKFLOW.md)：交付複選、提出方案、使用者確認後才剪輯。文件保存不能代替實測。

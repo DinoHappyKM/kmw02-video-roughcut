@@ -6,7 +6,7 @@
 
 [下載跨平台技能 ZIP](../../dist/video-production-pilot-v0.3.1.zip)｜[校驗值](../../dist/SHA256SUMS.txt)
 
-GitHub 目前為私人儲存庫；有權限者可從上述 ZIP 頁面下載原始檔，學生可取得老師分發的同一份 ZIP，不要求先開放私人專案。
+依 GitHub 儲存庫當下可見性與帳號權限下載，也可由老師分發 ZIP；不以這份文件推定倉庫目前為公開或私人。
 
 ## 套件內容與唯一來源
 
@@ -37,3 +37,16 @@ python tools/package_workflow_skill.py
 [發行驗證結果](../../dist/VALIDATION.json)：來源與部署 Skill 格式、ZIP 階層、23 個來源檔對照、全部部署引用已通過。Windows PowerShell 5.1 在含中文及空格的路徑完成安裝，23 個檔案與 payload 完全一致；重複安裝及遇到不同既有內容時停止且不修改檔案均通過。
 
 macOS 腳本已確認 LF 換行及可由 bash 啟動的封裝方式，但未在 macOS 執行。原生技能發現／選取、ChatCut My Skills、第二批素材、學生帳號與課堂重現仍待測；本版屬試跑發行。
+
+
+## 技能2與主選單
+
+本次新增內容在儲存庫的 .agents/skills/mv-emotional-editing 與 .agents/skills/video-workflow-menu，透過完整儲存庫使用；入口與登錄表見 [主選單](../../.agents/skills/video-workflow-menu/SKILL.md)。既有 v0.3.1 ZIP 是舊發行，不因本次 PR 自動包含新技能；本次沒有重新發行或宣稱 ChatCut 技能庫已安裝。打包工具的來源連結已改用新倉庫 main，正式重新發行各技能包時需另外驗證完整入口與相依引用。
+
+## 黃嘉偉KMW02AI剪輯外掛 0.1.0
+
+後續已新增獨立的完整外掛 ZIP，取代上節「新技能僅隨完整儲存庫使用」的限制；舊 v0.3.1 技能 ZIP 保留原樣。新包含 0 主選單、技能1與技能2，以及完整相依文件。顯示名稱為「黃嘉偉KMW02AI剪輯」，技術識別為 kmw02-ai-editing；需要本機執行環境。
+
+[下載外掛 ZIP](../../dist/黃嘉偉KMW02AI剪輯-v0.1.0.zip)｜[安裝方式](PLUGIN_INSTALL.md)｜[建置校驗](../../dist/PLUGIN_BUILD.json)｜[隔離安裝驗證](../../dist/PLUGIN_VALIDATION.json)
+
+以 python tools/package_kmw02_plugin.py 從通用主檔重建；Windows 安裝器呼叫實際 Codex CLI 註冊來源與安裝。已在隔離 CODEX_HOME 測得首次安裝、相同版本重裝與遇不同檔案停止且不改檔。使用者目前外掛設定未改動；桌面版實際選取、輸入0、工具連線與新踩點效果仍待驗收。Notion 寫入結果另以當次回報為準。
