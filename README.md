@@ -1,12 +1,16 @@
-# AI 影片製作流程與粗剪原型
+# KMW02 影片剪輯技能與粗剪原型
 
-> **目前工作入口：[從這裡開始](START_HERE.md)。**
+> **目前工作入口：[從這裡開始](START_HERE.md)。輸入 0／主選單，選技能1「多機訪談剪輯」或技能2「MV 情緒敘事剪輯」。**
+>
+> **外掛安裝包：[黃嘉偉KMW02AI剪輯 0.1.0](dist/黃嘉偉KMW02AI剪輯-v0.1.0.zip)**｜[安裝方式](docs/production/PLUGIN_INSTALL.md)。
+>
+> 技能2 MV 0.2.0 已有真實案例與 callback 修訂的使用者確認；新增踩點轉場規則、分支驗證及 [主選單](.agents/skills/video-workflow-menu/SKILL.md)。[MV 流程](docs/production/MV_WORKFLOW.md)｜[PR 與倉庫改名說明](docs/production/REPOSITORY_MAINTENANCE.md)。
 >
 > 流程／技能 0.3.1（2026-10-04），狀態 testing。本次目的：補上逐版本字幕核對與漏修回歸，沿用 [XML 素材自檢與必要轉檔](docs/production/XML_HANDOFF_RULES.md)，沿用包裝自檢，將本批正式作品 XML 成功回報記入 [驗收紀錄](docs/production/pilots/PILOT_001_XML.md)，並提供 [跨平台技能包](docs/production/DISTRIBUTION.md)。完成標準：技能與工作表可指導預檢、必要轉檔及實際來源更新；打包內容完整且可驗證。第二批與學生重現仍待完成。
 >
 > 已採用方向：ChatCut Desktop 處理通用剪輯，依作品交給 DaVinci 精修，保留自建專案並以兩批實測決定開發缺口。
 >
-> **驗證邊界：**main 的現有程式是示範／XML 原型，真實處理入口尚未接完；另有尚未合併的 [PR #2](https://github.com/DinoHappyKM/tool-video-roughcut/pull/2)，包含專案輸出、驗證與 Resolve 原生多機工作，不能只按 main 判斷全部進度。其實機驗收紀錄待釐清，見 [目前狀態](docs/production/STATUS.md)。
+> **驗證邊界：**main 的現有程式是示範／XML 原型，真實處理入口尚未接完；另有尚未合併的 [PR #2](https://github.com/DinoHappyKM/kmw02-video-roughcut/pull/2)，包含專案輸出、驗證與 Resolve 原生多機工作，不能只按 main 判斷全部進度。其實機驗收紀錄待釐清，見 [目前狀態](docs/production/STATUS.md)。
 >
 > 下方為既有原型的設計與使用說明，描述目標，不等於本次已完成真實影片、跨平台連結或 DaVinci 匯入驗證。主流程請以新入口為準。不要為此任務格式化既有硬碟。
 >
@@ -16,7 +20,7 @@
 
 # AI 影片初剪助理 (DaVinci Resolve XML Workflow)
 
-> 專為 **DinoHappyKM** 團隊打造的行銷影音自動化剪輯助理。  
+> 專為 **DinoHappyKM** 團隊打造的行銷影音自動化剪輯助理。
 > 透過 AI 語音辨識（A-roll 逐字稿時間戳）與 B-roll 空景情境智能標註，自動產生可在 **DaVinci Resolve** 一鍵匯入的初剪時間線 XML。
 
 ---
@@ -96,7 +100,7 @@
 ## 📂 專案目錄結構
 
 ```
-tool-video-roughcut/
+kmw02-video-roughcut/
 ├── assets/
 │   ├── a_roll/                 # (本機/SSD) A-roll 口播影片放置處
 │   ├── b_roll/                 # (本機/SSD) B-roll 情境素材池
@@ -142,4 +146,3 @@ npm run demo
 2. **AI 情境分析**：執行掃描或多模態標記，更新 `assets/broll_metadata.json` 並 Commit 到 GitHub（全團隊共享標籤庫）。
 3. **產出初剪**：依據逐字稿時間戳執行 `npm run build:xml`，取得專案 XML。
 4. **精修與出片**：剪輯師插上 SSD，匯入 XML 即可在達芬奇中完成調色、音效與細部微調。
-

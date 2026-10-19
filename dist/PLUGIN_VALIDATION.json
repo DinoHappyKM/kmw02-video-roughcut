@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "portableManifestAndThreeSkills": "passed",
+  "archiveReadbackAndRelativeLinks": "passed",
+  "windowsFreshInstallIsolatedCodexHome": "passed",
+  "windowsRepeatInstall": "passed",
+  "differentExistingFileStopsWithoutModification": "passed",
+  "userPluginConfiguration": "untouched",
+  "desktopSelectionAndMenu": "pending",
+  "newBeatRulePlayback": "pending",
+  "macOSInstaller": "not included"
+}
