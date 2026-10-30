@@ -1,4 +1,4 @@
-﻿param([string]$DestinationRoot = (Join-Path $env:LOCALAPPDATA 'KMW02AIEditing\0.1.0'), [string]$CodexPath, [switch]$PrepareOnly)
+param([string]$DestinationRoot = (Join-Path $env:LOCALAPPDATA 'KMW02AIEditing\0.1.1'), [string]$CodexPath, [switch]$PrepareOnly)
 $ErrorActionPreference = 'Stop'
 function Read-Sha256([string]$LiteralPath) {
     $stream = [IO.File]::OpenRead($LiteralPath)
@@ -11,7 +11,7 @@ $marketRoot = [IO.Path]::GetFullPath($DestinationRoot)
 $targetRoot = Join-Path $marketRoot 'plugins\kmw02-ai-editing'
 if ($marketRoot.StartsWith($sourceRoot + '\', [StringComparison]::OrdinalIgnoreCase) -or $marketRoot -eq $sourceRoot) { throw '安裝位置不可在來源套件內。' }
 $manifest = Get-Content -LiteralPath (Join-Path $sourceRoot 'plugin.json') -Raw -Encoding UTF8 | ConvertFrom-Json
-if ($manifest.name -ne 'kmw02-ai-editing' -or $manifest.version -ne '0.1.0') { throw '套件身分或版本不符。' }
+if ($manifest.name -ne 'kmw02-ai-editing' -or $manifest.version -ne '0.1.1') { throw '套件身分或版本不符。' }
 $hashes = Get-Content -LiteralPath (Join-Path $sourceRoot 'SHA256SUMS.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $expectedNames = @('SHA256SUMS.json') + @($hashes.PSObject.Properties.Name)
 $actualNames = @(Get-ChildItem -LiteralPath $sourceRoot -File -Recurse -Force | ForEach-Object { $_.FullName.Substring($sourceRoot.Length + 1).Replace('\','/') })

@@ -1,0 +1,6 @@
+interface:
+  display_name: "0｜影片主選單"
+  short_description: "從主選單選多機訪談或MV情緒剪輯，沿用既有工程與本次作品需求"
+  default_prompt: "使用 $video-workflow-menu，依已有資料接續本次工作。"
+  icon_small: "./assets/dinoh-logo.png"
+  icon_large: "./assets/dinoh-logo.png"

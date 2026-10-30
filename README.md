@@ -2,7 +2,7 @@
 
 > **目前工作入口：[從這裡開始](START_HERE.md)。輸入 0／主選單，選技能1「多機訪談剪輯」或技能2「MV 情緒敘事剪輯」。**
 >
-> **外掛安裝包：[黃嘉偉KMW02AI剪輯 0.1.0](dist/黃嘉偉KMW02AI剪輯-v0.1.0.zip)**｜[安裝方式](docs/production/PLUGIN_INSTALL.md)。
+> **外掛安裝包：[黃嘉偉KMW02AI剪輯 0.1.1](dist/黃嘉偉KMW02AI剪輯-v0.1.1.zip)**｜[安裝方式](docs/production/PLUGIN_INSTALL.md)。
 >
 > 技能2 MV 0.2.0 已有真實案例與 callback 修訂的使用者確認；新增踩點轉場規則、分支驗證及 [主選單](.agents/skills/video-workflow-menu/SKILL.md)。[MV 流程](docs/production/MV_WORKFLOW.md)｜[PR 與倉庫改名說明](docs/production/REPOSITORY_MAINTENANCE.md)。
 >
@@ -146,3 +146,7 @@ npm run demo
 2. **AI 情境分析**：執行掃描或多模態標記，更新 `assets/broll_metadata.json` 並 Commit 到 GitHub（全團隊共享標籤庫）。
 3. **產出初剪**：依據逐字稿時間戳執行 `npm run build:xml`，取得專案 XML。
 4. **精修與出片**：剪輯師插上 SSD，匯入 XML 即可在達芬奇中完成調色、音效與細部微調。
+
+## 發布前Logo檢查
+
+本人KM／KMT／KMW固定使用DinoH原PNG。使用Python與PyYAML執行 tools/verify_dinoh_brand.py，參數為解壓後外掛資料夾；根manifest及每支技能圖示全部通過才可發布。宿主顯示需另驗收。

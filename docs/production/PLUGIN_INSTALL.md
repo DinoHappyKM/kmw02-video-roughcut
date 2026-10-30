@@ -1,6 +1,6 @@
 # 黃嘉偉KMW02AI剪輯｜ZIP 安裝與使用
 
-外掛版本：0.1.0。顯示名稱：黃嘉偉KMW02AI剪輯。技術識別：kmw02-ai-editing。
+外掛版本：0.1.1。顯示名稱：黃嘉偉KMW02AI剪輯。技術識別：kmw02-ai-editing。
 
 ## 內容
 
@@ -12,7 +12,7 @@
 
 ## Windows 安裝
 
-1. 下載「黃嘉偉KMW02AI剪輯-v0.1.0.zip」，完整解壓縮到一般資料夾。
+1. 下載「黃嘉偉KMW02AI剪輯-v0.1.1.zip」，完整解壓縮到一般資料夾。
 2. 進入 kmw02-ai-editing 資料夾，在此開啟 PowerShell。
 3. 執行以下命令：
 
@@ -26,7 +26,7 @@ powershell.exe -NoProfile -File .\Install-Windows.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Install-Windows.ps1
 ```
 
-安裝器會檢查 SHA256，複製到 LocalAppData 的 KMW02AIEditing/0.1.0，註冊專用本機來源，再呼叫 Codex 安裝。遇到不同既有檔案會停止並保留原檔；不會修改影片或現有工程。
+安裝器會檢查 SHA256，複製到 LocalAppData 的 KMW02AIEditing/0.1.1，註冊專用本機來源，再呼叫 Codex 安裝。遇到不同既有檔案會停止並保留原檔；不會修改影片或現有工程。
 
 找不到 CLI 時，可加上 -CodexPath "codex.exe的完整路徑"；可用 -DestinationRoot "新的安裝資料夾" 改變安裝位置。-PrepareOnly 只準備檔案及目錄，不註冊或安裝外掛。
 

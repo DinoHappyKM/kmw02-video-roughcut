@@ -1,0 +1,6 @@
+interface:
+  display_name: "技能2｜MV情緒敘事剪輯"
+  short_description: "分析歌曲與畫面，先確認情緒敘事剪法和交付方式再製作與審片"
+  default_prompt: "使用 $mv-emotional-editing，依已有資料接續本次工作。"
+  icon_small: "./assets/dinoh-logo.png"
+  icon_large: "./assets/dinoh-logo.png"

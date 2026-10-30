@@ -4,7 +4,7 @@ import hashlib, json, posixpath, re, tempfile, zipfile
 from urllib.parse import quote, unquote
 ROOT=Path(__file__).resolve().parents[1]
 SLUG="kmw02-ai-editing"
-VERSION="0.1.0"
+VERSION="0.1.1"
 DISPLAY="黃嘉偉KMW02AI剪輯"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
 REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
@@ -40,6 +40,12 @@ def build():
             text=text.replace("也不代表已安裝到 ChatCut 技能庫或全域技能目錄","也不代表已安裝到 ChatCut 技能庫或驗證所有工具連線")
         files[dest]=text.encode("utf-8")
         provenance.append({"source":source.relative_to(ROOT).as_posix(),"deployment":dest,"sourceSha256":sha(raw),"deploymentSha256":sha(files[dest])})
+    files["assets/dinoh-logo.png"]=(ROOT/"assets/dinoh-logo.png").read_bytes()
+    for sd in sorted((ROOT/".agents/skills").iterdir()):
+        if not sd.is_dir(): continue
+        for rel in ("agents/openai.yaml","assets/dinoh-logo.png"):
+            src=sd/rel
+            if src.exists(): files["skills/"+sd.name+"/"+rel]=src.read_bytes()
     registry=json.loads((ROOT/"docs"/"production"/"SKILLS.json").read_text(encoding="utf-8"))
     registry["menuSkill"]="skills/video-workflow-menu/SKILL.md"
     for item in registry["skills"]:
@@ -47,6 +53,7 @@ def build():
         item["workflow"]="references/"+item["workflow"]
     files["references/docs/production/SKILLS.json"]=(json.dumps(registry,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
     interface={"displayName":DISPLAY,"shortDescription":"多機訪談與MV情緒敘事剪輯","longDescription":"輸入0開啟主選單，選技能1多機訪談剪輯或技能2MV情緒敘事剪輯。依確認方案與交付方式製作，保留可恢復原聲。需要本機素材及可用剪輯工具。","developerName":"黃嘉偉","category":"Productivity","capabilities":[],"defaultPrompt":"使用 $video-workflow-menu，顯示黃嘉偉KMW02AI剪輯的主選單。"}
+    interface["logo"]="./assets/dinoh-logo.png"; interface["composerIcon"]="./assets/dinoh-logo.png"
     manifest={"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","name":SLUG,"version":VERSION,"description":"多機訪談與MV情緒敘事剪輯工作流程","author":{"name":"黃嘉偉"},"repository":"https://github.com/DinoHappyKM/kmw02-video-roughcut","extensions":{"com.openai":{"requires_local_executor":True,"interface":interface,"onboardingSkill":"./skills/video-workflow-menu/SKILL.md"}}}
     files["plugin.json"]=(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
     files["Install-Windows.ps1"]=(ROOT/"tools"/"plugin-install-windows.ps1").read_bytes()

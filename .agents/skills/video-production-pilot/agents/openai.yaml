@@ -1,0 +1,6 @@
+interface:
+  display_name: "技能1｜多機訪談剪輯"
+  short_description: "從最新工程接續多機訪談，依需求處理鏡頭字幕與聲音並保存交接"
+  default_prompt: "使用 $video-production-pilot，依已有資料接續本次工作。"
+  icon_small: "./assets/dinoh-logo.png"
+  icon_large: "./assets/dinoh-logo.png"
