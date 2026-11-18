@@ -4,7 +4,7 @@ import hashlib, json, posixpath, re, tempfile, zipfile
 from urllib.parse import quote, unquote
 ROOT=Path(__file__).resolve().parents[1]
 SLUG="kmw02-ai-editing"
-VERSION="0.1.1"
+VERSION="0.2.0"
 DISPLAY="黃嘉偉KMW02AI剪輯"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
 REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
@@ -52,10 +52,13 @@ def build():
         item["entry"]="skills/"+item["slug"]+"/SKILL.md"
         item["workflow"]="references/"+item["workflow"]
     files["references/docs/production/SKILLS.json"]=(json.dumps(registry,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
-    interface={"displayName":DISPLAY,"shortDescription":"多機訪談與MV情緒敘事剪輯","longDescription":"輸入0開啟主選單，選技能1多機訪談剪輯或技能2MV情緒敘事剪輯。依確認方案與交付方式製作，保留可恢復原聲。需要本機素材及可用剪輯工具。","developerName":"黃嘉偉","category":"Productivity","capabilities":[],"defaultPrompt":"使用 $video-workflow-menu，顯示黃嘉偉KMW02AI剪輯的主選單。"}
+    interface={"displayName":DISPLAY,"shortDescription":"30:60繪本畫中畫、多機訪談與MV情緒剪輯","longDescription":"v0.2.0 手機與電腦雙端通用：1) 內建 30:60 繪本手繪框畫中畫（PiP）宣導講座套路（前置確認背景/公仔/字卡三要素並提醒模型切換）；2) 預設執行 11 條通用剪輯心法（先出完整去贅字修錯字字幕表供確認、分段人聲等化、-20~-22 LUFS 舒適音量、10幀接縫淡化、BGM 20-30% 黃金配比、實拍文青調色、底部防撞字幕、片尾溫暖共鳴金句）；3) 支援多機訪談與 MV 情緒敘事剪輯。","developerName":"DinoH 黃嘉偉","category":"Productivity","capabilities":["Interactive"],"brandColor":"#8A6B35","defaultPrompt":["0，顯示黃嘉偉KMW02AI剪輯的主選單。","1，我要用 30:60 繪本手繪框畫中畫套路剪輯宣導／講座短片，請先幫我審核去贅字字幕表並確認背景、公仔與字卡風格。","2，我要進行 MV 情緒敘事剪輯，請先檢查聲畫證據與情緒節點。"]}
     interface["logo"]="./assets/dinoh-logo.png"; interface["composerIcon"]="./assets/dinoh-logo.png"
-    manifest={"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","name":SLUG,"version":VERSION,"description":"多機訪談與MV情緒敘事剪輯工作流程","author":{"name":"黃嘉偉"},"repository":"https://github.com/DinoHappyKM/kmw02-video-roughcut","extensions":{"com.openai":{"requires_local_executor":True,"interface":interface,"onboardingSkill":"./skills/video-workflow-menu/SKILL.md"}}}
+    desc="黃嘉偉KMW02AI剪輯（手機與電腦雙端通用）。內建 30:60 繪本手繪框畫中畫套路、11 條通用口白去贅字先審後改與響度混音鐵律、多機訪談及 MV 情緒敘事剪輯。"
+    manifest={"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","name":SLUG,"version":VERSION,"description":desc,"author":{"name":"DinoH 黃嘉偉"},"repository":"https://github.com/DinoHappyKM/kmw02-video-roughcut","extensions":{"com.openai":{"interface":interface,"onboardingSkill":"./skills/video-workflow-menu/SKILL.md"}}}
+    codex_manifest={"name":SLUG,"version":VERSION,"description":desc,"author":{"name":"DinoH 黃嘉偉"},"interface":interface}
     files["plugin.json"]=(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
+    files[".codex-plugin/plugin.json"]=(json.dumps(codex_manifest,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
     files["Install-Windows.ps1"]=(ROOT/"tools"/"plugin-install-windows.ps1").read_bytes()
     files["安裝說明.md"]=(ROOT/"docs"/"production"/"PLUGIN_INSTALL.md").read_bytes()
     files["BUILD_SOURCES.json"]=(json.dumps({"version":VERSION,"sources":provenance},ensure_ascii=False,indent=2)+"\n").encode("utf-8")

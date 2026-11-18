@@ -1,10 +1,11 @@
 {
-  "archive": "黃嘉偉KMW02AI剪輯-v0.1.1.zip",
-  "version": "0.1.1",
+  "archive": "黃嘉偉KMW02AI剪輯-v0.2.0.zip",
+  "version": "0.2.0",
   "displayName": "黃嘉偉KMW02AI剪輯",
-  "files": 43,
-  "sha256": "004b48faeef6a78746079fa5cdf6f0b0a2754b58ed89ba03c8e7364ca1b24560",
-  "bytes": 139896,
+  "files": 45,
+  "sha256": "4543491d6ebbcc88fbd7b3226430dccdcbe715e00865f12363b818d0c4e7f398",
+  "bytes": 153411,
+  "mobileCompatible": true,
   "archiveReadback": "passed",
   "manifestReferencesAndSkills": "passed"
 }

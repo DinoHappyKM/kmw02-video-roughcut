@@ -4,9 +4,9 @@
   "skills": [
     {
       "id": 1,
-      "name": "多機訪談剪輯",
+      "name": "多機訪談與宣導講座剪輯（含 30:60 繪本畫中畫）",
       "slug": "video-production-pilot",
-      "summary": "雙機／多機訪談素材同步、對話剪輯、字幕與交接；原生 Multicam 依實際驗證狀態說明。",
+      "summary": "多機訪談、宣導講座 30:60 繪本手繪框畫中畫（PiP）套路與 11 條通用口白字幕審校、響度等化、BGM 混音及文青調色鐵律。",
       "entry": ".agents/skills/video-production-pilot/SKILL.md",
       "workflow": "docs/production/WORKFLOW.md"
     },

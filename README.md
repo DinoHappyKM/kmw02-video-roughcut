@@ -1,8 +1,8 @@
 # KMW02 影片剪輯技能與粗剪原型
 
-> **目前工作入口：[從這裡開始](START_HERE.md)。輸入 0／主選單，選技能1「多機訪談剪輯」或技能2「MV 情緒敘事剪輯」。**
+> **目前工作入口：[從這裡開始](START_HERE.md)。輸入 0／主選單，選技能1「多機訪談與宣導講座剪輯（含 30:60 繪本手繪框畫中畫套路＋11 條通用口白混音鐵律）」或技能2「MV 情緒敘事剪輯」。**
 >
-> **外掛安裝包：[黃嘉偉KMW02AI剪輯 0.1.1](dist/黃嘉偉KMW02AI剪輯-v0.1.1.zip)**｜[安裝方式](docs/production/PLUGIN_INSTALL.md)。
+> **外掛安裝包（手機與電腦雙端通用）：[黃嘉偉KMW02AI剪輯 0.2.0](dist/黃嘉偉KMW02AI剪輯-v0.2.0.zip)**｜[安裝方式](docs/production/PLUGIN_INSTALL.md)。
 >
 > 技能2 MV 0.2.0 已有真實案例與 callback 修訂的使用者確認；新增踩點轉場規則、分支驗證及 [主選單](.agents/skills/video-workflow-menu/SKILL.md)。[MV 流程](docs/production/MV_WORKFLOW.md)｜[PR 與倉庫改名說明](docs/production/REPOSITORY_MAINTENANCE.md)。
 >
