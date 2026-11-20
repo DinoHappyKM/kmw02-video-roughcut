@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,posixpath,re,zipfile,tempfile
 from urllib.parse import unquote,quote
 ROOT=Path(__file__).resolve().parents[1]
-VERSION="0.5.0";SLUG="video-production-pilot";ROOTNAME=f"{SLUG}-v{VERSION}"
+VERSION="0.6.0";SLUG="video-production-pilot";ROOTNAME=f"{SLUG}-v{VERSION}"
 SKILL=ROOT/".agents"/"skills"/SLUG/"SKILL.md"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
 REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
