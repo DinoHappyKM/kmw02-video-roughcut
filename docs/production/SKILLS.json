@@ -4,9 +4,9 @@
   "skills": [
     {
       "id": 1,
-      "name": "多機訪談與宣導講座剪輯（含 30:60 繪本畫中畫）",
+      "name": "多機訪談與橫直式故事剪輯",
       "slug": "video-production-pilot",
-      "summary": "多機訪談、宣導講座 30:60 繪本手繪框畫中畫（PiP）套路與 11 條通用口白字幕審校、響度等化、BGM 混音及文青調色鐵律。",
+      "summary": "本片／共用素材、橫直式開窗與落點、IPE花字主次標、示意圖、封面；沿用多機、字幕混音及交接。",
       "entry": ".agents/skills/video-production-pilot/SKILL.md",
       "workflow": "docs/production/WORKFLOW.md"
     },

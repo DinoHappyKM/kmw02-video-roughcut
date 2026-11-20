@@ -50,3 +50,7 @@ macOS 腳本已確認 LF 換行及可由 bash 啟動的封裝方式，但未在 
 [下載外掛 ZIP](../../dist/黃嘉偉KMW02AI剪輯-v0.1.0.zip)｜[安裝方式](PLUGIN_INSTALL.md)｜[建置校驗](../../dist/PLUGIN_BUILD.json)｜[隔離安裝驗證](../../dist/PLUGIN_VALIDATION.json)
 
 以 python tools/package_kmw02_plugin.py 從通用主檔重建；Windows 安裝器呼叫實際 Codex CLI 註冊來源與安裝。已在隔離 CODEX_HOME 測得首次安裝、相同版本重裝與遇不同檔案停止且不改檔。使用者目前外掛設定未改動；桌面版實際選取、輸入0、工具連線與新踩點效果仍待驗收。Notion 寫入結果另以當次回報為準。
+
+## 2026-11-20｜目前完整外掛 0.3.0
+
+[下載新版](../../dist/黃嘉偉KMW02AI剪輯-v0.3.0.zip)。從正式主檔與 IPE 圖片重建，三支技能與全部規則自包含。舊單支 0.3.1／外掛 0.1.0、0.2.0 為歷史版本，未自動更新。安裝包靜態／解壓／來源及 Logo 檢查不等於宿主已安裝、新素材剪輯或學生實測。
