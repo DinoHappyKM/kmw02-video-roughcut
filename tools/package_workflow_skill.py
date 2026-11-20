@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,posixpath,re,zipfile,tempfile
 from urllib.parse import unquote,quote
 ROOT=Path(__file__).resolve().parents[1]
-VERSION="0.3.1";SLUG="video-production-pilot";ROOTNAME=f"{SLUG}-v{VERSION}"
+VERSION="0.5.0";SLUG="video-production-pilot";ROOTNAME=f"{SLUG}-v{VERSION}"
 SKILL=ROOT/".agents"/"skills"/SLUG/"SKILL.md"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
 REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
@@ -72,7 +72,7 @@ echo '在 Codex 打開此專案，請使用 $video-production-pilot；原生發�
 '''.replace('§','$')
 INSTALL="""# AI 影片製作試跑技能｜安裝說明
 
-版本：0.3.1。先解壓縮整包，再執行對應平台安裝。包內沒有影片或編輯器，ChatCut Desktop 連線與素材另行準備。
+版本：0.5.0。先解壓縮整包，再執行對應平台安裝。包內沒有影片或編輯器，ChatCut Desktop 連線與素材另行準備。
 
 ## Windows
 
@@ -107,9 +107,16 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def build():
     mapping={SKILL:"SKILL.md",ROOT/"START_HERE.md":"references/START_HERE.md"}
     mapping.update({p:"references/"+p.relative_to(ROOT).as_posix() for p in sorted((ROOT/"docs"/"production").rglob("*.md"))})
+    mapping.update({p:"references/"+p.relative_to(ROOT).as_posix() for p in sorted((ROOT/"docs/"/"production"/"lettering").rglob("*.png"))})
     files={};manifest=[]
     for source,dest in mapping.items():
-        raw=source.read_bytes();text=raw.decode("utf-8")
+        raw=source.read_bytes()
+        if source.suffix==".png":
+            key="payload/"+SLUG+"/"+dest
+            files[key]=raw
+            manifest.append({"source":source.relative_to(ROOT).as_posix(),"deployment":key,"sourceSha256":sha(raw),"deploymentSha256":sha(raw)})
+            continue
+        text=raw.decode("utf-8")
         def change(m):
             target=m.group(2);url=target[1:-1] if target.startswith("<") and target.endswith(">") else target
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:",url) or url.startswith("#"):return m.group(0)

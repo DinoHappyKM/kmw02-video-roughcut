@@ -4,7 +4,7 @@ import hashlib, json, posixpath, re, tempfile, zipfile
 from urllib.parse import quote, unquote
 ROOT=Path(__file__).resolve().parents[1]
 SLUG="kmw02-ai-editing"
-VERSION="0.2.0"
+VERSION="0.3.0"
 DISPLAY="黃嘉偉KMW02AI剪輯"
 LINK=re.compile(r"(!?\[[^\]]*\]\()([^)\n]+)(\))")
 REPO="https://github.com/DinoHappyKM/kmw02-video-roughcut/blob/main/"
@@ -15,9 +15,16 @@ def build():
         sources[p]="references/"+p.relative_to(ROOT).as_posix()
     for p in sorted((ROOT/".agents"/"skills").glob("*/SKILL.md")):
         sources[p]="skills/"+p.parent.name+"/SKILL.md"
+    for p in sorted((ROOT/"docs"/"production"/"lettering").rglob("*.png")):
+        sources[p]="references/"+p.relative_to(ROOT).as_posix()
     files={}; provenance=[]
     for source,dest in sources.items():
-        raw=source.read_bytes(); text=raw.decode("utf-8")
+        raw=source.read_bytes()
+        if source.suffix==".png":
+            files[dest]=raw
+            provenance.append({"source":source.relative_to(ROOT).as_posix(),"deployment":dest,"sourceSha256":sha(raw),"deploymentSha256":sha(raw)})
+            continue
+        text=raw.decode("utf-8")
         def change(m):
             url=m.group(2).strip("<>")
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:",url) or url.startswith("#"): return m.group(0)
@@ -52,9 +59,9 @@ def build():
         item["entry"]="skills/"+item["slug"]+"/SKILL.md"
         item["workflow"]="references/"+item["workflow"]
     files["references/docs/production/SKILLS.json"]=(json.dumps(registry,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
-    interface={"displayName":DISPLAY,"shortDescription":"30:60繪本畫中畫、多機訪談與MV情緒剪輯","longDescription":"v0.2.0 手機與電腦雙端通用：1) 內建 30:60 繪本手繪框畫中畫（PiP）宣導講座套路（前置確認背景/公仔/字卡三要素並提醒模型切換）；2) 預設執行 11 條通用剪輯心法（先出完整去贅字修錯字字幕表供確認、分段人聲等化、-20~-22 LUFS 舒適音量、10幀接縫淡化、BGM 20-30% 黃金配比、實拍文青調色、底部防撞字幕、片尾溫暖共鳴金句）；3) 支援多機訪談與 MV 情緒敘事剪輯。","developerName":"DinoH 黃嘉偉","category":"Productivity","capabilities":["Interactive"],"brandColor":"#8A6B35","defaultPrompt":["0，顯示黃嘉偉KMW02AI剪輯的主選單。","1，我要用 30:60 繪本手繪框畫中畫套路剪輯宣導／講座短片，請先幫我審核去贅字字幕表並確認背景、公仔與字卡風格。","2，我要進行 MV 情緒敘事剪輯，請先檢查聲畫證據與情緒節點。"]}
+    interface={"displayName":DISPLAY,"shortDescription":"橫直式故事、多機訪談與MV情緒剪輯","longDescription":"v0.3.0：保留多機、繁體字幕審校、人聲混音、MV與XML交接，加入本片及共用資產、直式同窗切換、開窗落點、IPE主次標與封面。30:60為可選風格；Motion與Suno為未來接入方向。","developerName":"DinoH 黃嘉偉","category":"Productivity","capabilities":["Interactive"],"brandColor":"#8A6B35","defaultPrompt":["0，顯示影片技能主選單。","1，請盤點我的拍攝資料夾及共用資產，準備直式9:16故事影片，時長依內容完整度決定。","2，我要做MV情緒敘事剪輯，請先檢查素材與剪法。"]}
     interface["logo"]="./assets/dinoh-logo.png"; interface["composerIcon"]="./assets/dinoh-logo.png"
-    desc="黃嘉偉KMW02AI剪輯（手機與電腦雙端通用）。內建 30:60 繪本手繪框畫中畫套路、11 條通用口白去贅字先審後改與響度混音鐵律、多機訪談及 MV 情緒敘事剪輯。"
+    desc="黃嘉偉KMW02AI剪輯：多機與橫直式故事剪輯、共用資產、開窗落點、IPE字卡與封面，保留字幕混音、MV及XML交接。"
     manifest={"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","name":SLUG,"version":VERSION,"description":desc,"author":{"name":"DinoH 黃嘉偉"},"repository":"https://github.com/DinoHappyKM/kmw02-video-roughcut","extensions":{"com.openai":{"interface":interface,"onboardingSkill":"./skills/video-workflow-menu/SKILL.md"}}}
     codex_manifest={"name":SLUG,"version":VERSION,"description":desc,"author":{"name":"DinoH 黃嘉偉"},"interface":interface}
     files["plugin.json"]=(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
